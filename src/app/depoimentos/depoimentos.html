@@ -1,0 +1,17 @@
+<section class="depoimentos">
+  <div class="container">
+    <h2>Depoimentos de Adotantes</h2>
+    <div class="lista-depoimentos">
+      @for (feedback of feedbacks(); track feedback.id) {
+        <div class="depoimento">
+          <div class="stars">{{ getStars(feedback.avaliacao).join('') }}</div>
+          <p>"{{ feedback.depoimento }}"</p>
+          <cite>- {{ feedback.nome }} (Adotou: {{ feedback.nomePet }})</cite>
+          @if (feedback.data) {
+            <span class="data">{{ feedback.data }}</span>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>

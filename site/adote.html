@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adote - Lar Amigo</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .tab-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .tab-buttons button {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #ddd;
+            background: white;
+            color: #333;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .tab-buttons button:hover {
+            border-color: #4CAF50;
+            color: #4CAF50;
+            transform: translateY(-3px);
+        }
+
+        .tab-buttons button.active {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border-color: #4CAF50;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .animais-adotados {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .animal-adotado {
+            background: linear-gradient(135deg, #f0f8ff 0%, #f5f7fa 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.15);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(76, 175, 80, 0.2);
+            position: relative;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .animal-adotado:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(76, 175, 80, 0.25);
+            border-color: #4CAF50;
+        }
+
+        .badge-adotado {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+            z-index: 10;
+        }
+
+        .animal-adotado img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .animal-adotado:hover img {
+            transform: scale(1.05);
+        }
+
+        .animal-adotado h3 {
+            margin: 1.5rem 1.5rem 0.5rem;
+            color: #2c3e50;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .animal-adotado p {
+            margin: 0;
+            padding: 0 1.5rem;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .info-adocao {
+            background: white;
+            padding: 1rem 1.5rem !important;
+            margin: 1rem 1.5rem 0 !important;
+            border-radius: 8px;
+            border-left: 3px solid #4CAF50;
+            color: #2c3e50;
+            font-size: 0.9rem !important;
+        }
+
+        .info-adocao strong {
+            color: #4CAF50;
+        }
+
+        .depoimento-animal {
+            font-style: italic;
+            color: #666;
+            background: white;
+            padding: 1.5rem !important;
+            margin: 1rem 1.5rem !important;
+            border-radius: 8px;
+            border-left: 3px solid #4CAF50;
+        }
+
+        .avaliacao {
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(76, 175, 80, 0.05);
+        }
+
+        .avaliacao strong {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+
+        .stars {
+            font-size: 1.3rem;
+            color: #ffc107;
+            letter-spacing: 1px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .animais-adotados {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Lar Amigo</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="adote.html">Adote</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="gallery">
+        <div class="container">
+            <h2 id="title">Animais Disponíveis para Adoção</h2>
+            
+            <div class="tab-buttons">
+                <button onclick="showTab('disponiveis', this)">Disponíveis</button>
+                <button onclick="showTab('historias', this)">✓ Histórias de Sucesso</button>
+            </div>
+
+            <div id="disponiveis" class="tab-content active">
+                <div class="animals">
+                    <div class="animal">
+                        <img src="https://via.placeholder.com/300x200?text=Rex+-+Cachorro" alt="Cachorro 1">
+                        <h3>Rex</h3>
+                        <p>Raça: Vira-lata. Idade: 2 anos. Rex é um cachorro muito brincalhão e amoroso, perfeito para famílias com crianças.</p>
+                    </div>
+                    <div class="animal">
+                        <img src="https://via.placeholder.com/300x200?text=Mia+-+Gato" alt="Gato 1">
+                        <h3>Mia</h3>
+                        <p>Raça: Siamês. Idade: 1 ano. Mia é uma gatinha carinhosa e independente, ideal para apartamentos.</p>
+                    </div>
+                    <div class="animal">
+                        <img src="https://via.placeholder.com/300x200?text=Bobby+-+Cachorro" alt="Cachorro 2">
+                        <h3>Bobby</h3>
+                        <p>Raça: Labrador. Idade: 3 anos. Bobby adora passear e brincar, é muito obediente e leal.</p>
+                    </div>
+                    <div class="animal">
+                        <img src="https://via.placeholder.com/300x200?text=Luna+-+Gato" alt="Gato 2">
+                        <h3>Luna</h3>
+                        <p>Raça: Persa. Idade: 2 anos. Luna é uma gatinha calma e afetuosa, perfeita para um lar tranquilo.</p>
+                    </div>
+                    <div class="animal">
+                        <img src="https://via.placeholder.com/300x200?text=Max+-+Cachorro" alt="Cachorro 3">
+                        <h3>Max</h3>
+                        <p>Raça: Golden Retriever. Idade: 1 ano. Max é um filhote energético e inteligente, ótimo para atividades ao ar livre.</p>
+                    </div>
+                    <div class="animal">
+                        <img src="https://via.placeholder.com/300x200?text=Bella+-+Gato" alt="Gato 3">
+                        <h3>Bella</h3>
+                        <p>Raça: Maine Coon. Idade: 4 anos. Bella é uma gata majestosa e brincalhona, adora companhia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="historias" class="tab-content">
+                <div class="animais-adotados">
+                    <div class="animal-adotado">
+                        <div class="badge-adotado">✓ Adotado</div>
+                        <img src="https://via.placeholder.com/300x200?text=Toby+-+Cachorro+Adotado" alt="Toby">
+                        <h3>Toby</h3>
+                        <p>Raça: Poodle. Idade: 3 anos. Toby é um cachorro afetuoso e inteligente.</p>
+                        <p class="info-adocao"><strong>Adotado por:</strong> Família Silva<br><strong>Data:</strong> 2025-01-15</p>
+                        <div class="avaliacao"><strong>Avaliação:</strong> <span class="stars">★★★★★</span></div>
+                        <p class="depoimento-animal">"Toby trouxe uma alegria imensa para nossa família. Recomendamos muito a adoção!"</p>
+                    </div>
+
+                    <div class="animal-adotado">
+                        <div class="badge-adotado">✓ Adotado</div>
+                        <img src="https://via.placeholder.com/300x200?text=Tomás+-+Gato+Adotado" alt="Tomás">
+                        <h3>Tomás</h3>
+                        <p>Raça: Gato sem raça. Idade: 2 anos. Tomás é um gato carinhoso e brincalhão.</p>
+                        <p class="info-adocao"><strong>Adotado por:</strong> Ana Costa<br><strong>Data:</strong> 2025-02-20</p>
+                        <div class="avaliacao"><strong>Avaliação:</strong> <span class="stars">★★★★★</span></div>
+                        <p class="depoimento-animal">"Tomás se adaptou perfeitamente. É companheiro, carinhoso e muito obediente."</p>
+                    </div>
+
+                    <div class="animal-adotado">
+                        <div class="badge-adotado">✓ Adotado</div>
+                        <img src="https://via.placeholder.com/300x200?text=Chiquinha+-+Cachorra+Adotada" alt="Chiquinha">
+                        <h3>Chiquinha</h3>
+                        <p>Raça: Vira-lata. Idade: 4 anos. Chiquinha é uma cachorra dócil e amigável.</p>
+                        <p class="info-adocao"><strong>Adotado por:</strong> João Pereira<br><strong>Data:</strong> 2024-12-10</p>
+                        <div class="avaliacao"><strong>Avaliação:</strong> <span class="stars">★★★★★</span></div>
+                        <p class="depoimento-animal">"Chiquinha é a melhor decisão que tomamos. Leal, carinhosa e traz felicidade todos os dias."</p>
+                    </div>
+
+                    <div class="animal-adotado">
+                        <div class="badge-adotado">✓ Adotado</div>
+                        <img src="https://via.placeholder.com/300x200?text=Felicia+-+Gata+Adotada" alt="Felicia">
+                        <h3>Felicia</h3>
+                        <p>Raça: Gato Laranja. Idade: 1 ano. Felicia é uma gatinha energética e carinhosa.</p>
+                        <p class="info-adocao"><strong>Adotado por:</strong> Mariana Lima<br><strong>Data:</strong> 2025-01-30</p>
+                        <div class="avaliacao"><strong>Avaliação:</strong> <span class="stars">★★★★★</span></div>
+                        <p class="depoimento-animal">"Felicia é perfeita! Muito dócil, afetuosa e se dá muito bem com as crianças."</p>
+                    </div>
+
+                    <div class="animal-adotado">
+                        <div class="badge-adotado">✓ Adotado</div>
+                        <img src="https://via.placeholder.com/300x200?text=Duke+-+Cachorro+Adotado" alt="Duke">
+                        <h3>Duke</h3>
+                        <p>Raça: Pitbull. Idade: 2 anos. Duke é um cachorro protetor e amoroso.</p>
+                        <p class="info-adocao"><strong>Adotado por:</strong> Carlos Mendes<br><strong>Data:</strong> 2024-11-25</p>
+                        <div class="avaliacao"><strong>Avaliação:</strong> <span class="stars">★★★★★</span></div>
+                        <p class="depoimento-animal">"Duke é protetor, afetuoso e traz segurança para nossa casa. Um cão incrível!"</p>
+                    </div>
+
+                    <div class="animal-adotado">
+                        <div class="badge-adotado">✓ Adotado</div>
+                        <img src="https://via.placeholder.com/300x200?text=Princesa+-+Gata+Adotada" alt="Princesa">
+                        <h3>Princesa</h3>
+                        <p>Raça: Persa Branca. Idade: 3 anos. Princesa é uma gata elegante e calma.</p>
+                        <p class="info-adocao"><strong>Adotado por:</strong> Patricia Oliveira<br><strong>Data:</strong> 2025-02-05</p>
+                        <div class="avaliacao"><strong>Avaliação:</strong> <span class="stars">★★★★☆</span></div>
+                        <p class="depoimento-animal">"Princesa acrescentou paz e serenidade ao nosso lar. Muito tranquila e independente."</p>
+                    </div>
+
+                    <div class="animal-adotado">
+                        <div class="badge-adotado">✓ Adotado</div>
+                        <img src="https://via.placeholder.com/300x200?text=Thor+-+Husky+Adotado" alt="Thor">
+                        <h3>Thor</h3>
+                        <p>Raça: Husky. Idade: 5 anos. Thor é um cachorro atlético e leal.</p>
+                        <p class="info-adocao"><strong>Adotado por:</strong> Roberto Alves<br><strong>Data:</strong> 2024-10-18</p>
+                        <div class="avaliacao"><strong>Avaliação:</strong> <span class="stars">★★★★★</span></div>
+                        <p class="depoimento-animal">"Thor é leal, ativo e companheiro perfeito para caminhadas. Amor à primeira vista!"</p>
+                    </div>
+
+                    <div class="animal-adotado">
+                        <div class="badge-adotado">✓ Adotado</div>
+                        <img src="https://via.placeholder.com/300x200?text=Mimi+-+Gata+Adotada" alt="Mimi">
+                        <h3>Mimi</h3>
+                        <p>Raça: Gato Preto. Idade: 2 anos. Mimi é uma gatinha dócil e brincalhona.</p>
+                        <p class="info-adocao"><strong>Adotado por:</strong> Fernanda Rocha<br><strong>Data:</strong> 2025-01-12</p>
+                        <div class="avaliacao"><strong>Avaliação:</strong> <span class="stars">★★★★★</span></div>
+                        <p class="depoimento-animal">"Mimi conquistou nossos corações. Dócil, carinhosa e traz muita diversão."</p>
+                    </div>
+
+                    <div class="animal-adotado">
+                        <div class="badge-adotado">✓ Adotado</div>
+                        <img src="https://via.placeholder.com/300x200?text=Scooby+-+Cachorro+Adotado" alt="Scooby">
+                        <h3>Scooby</h3>
+                        <p>Raça: Cocker Spaniel. Idade: 3 anos. Scooby é um cachorro carinhoso e sociável.</p>
+                        <p class="info-adocao"><strong>Adotado por:</strong> Lucia Martins<br><strong>Data:</strong> 2024-12-28</p>
+                        <div class="avaliacao"><strong>Avaliação:</strong> <span class="stars">★★★★☆</span></div>
+                        <p class="depoimento-animal">"Scooby é o cão mais sociável que conhecemos. Adora brincar e é muito inteligente."</p>
+                    </div>
+
+                    <div class="animal-adotado">
+                        <div class="badge-adotado">✓ Adotado</div>
+                        <img src="https://via.placeholder.com/300x200?text=Whiskers+-+Gato+Adotado" alt="Whiskers">
+                        <h3>Whiskers</h3>
+                        <p>Raça: Gato Siamês. Idade: 4 anos. Whiskers é um gato elegante e comunicativo.</p>
+                        <p class="info-adocao"><strong>Adotado por:</strong> Bruno Santos<br><strong>Data:</strong> 2025-02-14</p>
+                        <div class="avaliacao"><strong>Avaliação:</strong> <span class="stars">★★★★★</span></div>
+                        <p class="depoimento-animal">"Whiskers é extraordinário! Comunicativo, carinhoso e traz vida à nossa casa."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+        </div>
+    </footer>
+
+    <script>
+        function showTab(tabName, button) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-buttons button');
+            const title = document.getElementById('title');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            button.classList.add('active');
+
+            if (tabName === 'historias') {
+                title.textContent = 'Histórias de Sucesso - Animais Adotados';
+            } else {
+                title.textContent = 'Animais Disponíveis para Adoção';
+            }
+        }
+    </script>
+</body>
+</html>

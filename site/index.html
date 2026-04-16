@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lar Amigo - ONG de Resgate Animal</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .depoimentos {
+            padding: 3rem 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+        }
+
+        .lista-depoimentos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .depoimento {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid #4CAF50;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .depoimento:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+        }
+
+        .depoimento .stars {
+            font-size: 1.5rem;
+            color: #ffc107;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .depoimento p {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .depoimento cite {
+            display: block;
+            font-weight: 600;
+            color: #4CAF50;
+            margin-bottom: 0.5rem;
+        }
+
+        .depoimento .data {
+            display: block;
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .lista-depoimentos {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Lar Amigo</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="adote.html">Adote</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Bem-vindo ao Lar Amigo</h2>
+            <p>Resgatando e cuidando de animais abandonados para encontrar lares amorosos.</p>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <h2>Sobre Nós</h2>
+            <p>A ONG Lar Amigo é uma organização sem fins lucrativos dedicada ao resgate, cuidado e adoção responsável de gatos e cachorros abandonados. Atuamos com ações voluntárias para acolher animais em situação de rua ou vítimas de maus-tratos, oferecendo abrigo, alimentação, cuidados veterinários e buscando lares amorosos para adoção.</p>
+            <p>Nosso objetivo é sensibilizar a população sobre a causa animal e promover a adoção responsável, além de incentivar doações e voluntariado para manter nossas atividades.</p>
+        </div>
+    </section>
+
+    <section class="depoimentos">
+        <div class="container">
+            <h2>Depoimentos de Adotantes</h2>
+            <div class="lista-depoimentos">
+                <div class="depoimento">
+                    <div class="stars">★★★★★</div>
+                    <p>"Toby trouxe uma alegria imensa para nossa família. Recomendamos muito a adoção!"</p>
+                    <cite>- Família Silva (Adotou: Toby)</cite>
+                    <span class="data">2025-01-20</span>
+                </div>
+                <div class="depoimento">
+                    <div class="stars">★★★★★</div>
+                    <p>"Tomás se adaptou perfeitamente. É companheiro, carinhoso e muito obediente."</p>
+                    <cite>- Ana Costa (Adotou: Tomás)</cite>
+                    <span class="data">2025-02-22</span>
+                </div>
+                <div class="depoimento">
+                    <div class="stars">★★★★★</div>
+                    <p>"Chiquinha é a melhor decisão que tomamos. Leal, carinhosa e traz felicidade todos os dias."</p>
+                    <cite>- João Pereira (Adotou: Chiquinha)</cite>
+                    <span class="data">2024-12-15</span>
+                </div>
+                <div class="depoimento">
+                    <div class="stars">★★★★★</div>
+                    <p>"Felicia é perfeita! Muito dócil, afetuosa e se dá muito bem com as crianças."</p>
+                    <cite>- Mariana Lima (Adotou: Felicia)</cite>
+                    <span class="data">2025-02-05</span>
+                </div>
+                <div class="depoimento">
+                    <div class="stars">★★★★★</div>
+                    <p>"Duke é protetor, afetuoso e traz segurança para nossa casa. Um cão incrível!"</p>
+                    <cite>- Carlos Mendes (Adotou: Duke)</cite>
+                    <span class="data">2024-12-10</span>
+                </div>
+                <div class="depoimento">
+                    <div class="stars">★★★★☆</div>
+                    <p>"Princesa acrescentou paz e serenidade ao nosso lar. Muito tranquila e independente."</p>
+                    <cite>- Patricia Oliveira (Adotou: Princesa)</cite>
+                    <span class="data">2025-02-08</span>
+                </div>
+                <div class="depoimento">
+                    <div class="stars">★★★★★</div>
+                    <p>"Thor é leal, ativo e companheiro perfeito para caminhadas. Amor à primeira vista!"</p>
+                    <cite>- Roberto Alves (Adotou: Thor)</cite>
+                    <span class="data">2024-10-25</span>
+                </div>
+                <div class="depoimento">
+                    <div class="stars">★★★★★</div>
+                    <p>"Mimi conquistou nossos corações. Dócil, carinhosa e traz muita diversão."</p>
+                    <cite>- Fernanda Rocha (Adotou: Mimi)</cite>
+                    <span class="data">2025-01-18</span>
+                </div>
+                <div class="depoimento">
+                    <div class="stars">★★★★☆</div>
+                    <p>"Scooby é o cão mais sociável que conhecemos. Adora brincar e é muito inteligente."</p>
+                    <cite>- Lucia Martins (Adotou: Scooby)</cite>
+                    <span class="data">2025-01-05</span>
+                </div>
+                <div class="depoimento">
+                    <div class="stars">★★★★★</div>
+                    <p>"Whiskers é extraordinário! Comunicativo, carinhoso e traz vida à nossa casa."</p>
+                    <cite>- Bruno Santos (Adotou: Whiskers)</cite>
+                    <span class="data">2025-02-18</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+        </div>
+    </footer>
+</body>
+</html>

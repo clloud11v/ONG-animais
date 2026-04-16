@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Lar Amigo</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Lar Amigo</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="adote.html">Adote</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="contact-form">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <form action="#" method="post">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone">
+
+                <label for="assunto">Assunto:</label>
+                <select id="assunto" name="assunto">
+                    <option value="adocao">Adoção</option>
+                    <option value="doacao">Doação</option>
+                    <option value="voluntariado">Voluntariado</option>
+                    <option value="outro">Outro</option>
+                </select>
+
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="help">
+        <div class="container">
+            <h2>Como Ajudar</h2>
+            <p>Existem várias maneiras de contribuir com a Lar Amigo:</p>
+            <ul>
+                <li><strong>Doações:</strong> Ajude-nos com ração, medicamentos, brinquedos e materiais de limpeza.</li>
+                <li><strong>Voluntariado:</strong> Junte-se à nossa equipe para cuidar dos animais, passear com eles ou ajudar em eventos.</li>
+                <li><strong>Apadrinhamento:</strong> Apoie financeiramente um animal específico, cobrindo suas necessidades básicas.</li>
+                <li><strong>Divulgação:</strong> Compartilhe nossa causa nas redes sociais e incentive a adoção responsável.</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<section class="gallery">
+  <div class="container">
+    <h2>{{ filter() === 'adotados' ? 'Histórias de Sucesso - Animais Adotados' : 'Animais Disponíveis para Adoção' }}</h2>
+    <div class="filters">
+      <button (click)="setFilter('todos')" [class.active]="filter() === 'todos'">Todos Disponíveis</button>
+      <button (click)="setFilter('cao')" [class.active]="filter() === 'cao'">Cachorros</button>
+      <button (click)="setFilter('gato')" [class.active]="filter() === 'gato'">Gatos</button>
+      <button (click)="setFilter('adotados')" [class.active]="filter() === 'adotados'">✓ Histórias de Sucesso</button>
+    </div>
+
+    @if (filter() !== 'adotados') {
+      <div class="animais">
+        @for (animal of filteredAnimals(); track animal.id) {
+          <div class="animal">
+            <img [src]="animal.imagemUrl" [alt]="animal.nome + ' - ' + animal.raca">
+            <h3>{{ animal.nome }}</h3>
+            <p><strong>Raça:</strong> {{ animal.raca }}. <strong>Idade:</strong> {{ animal.idade }} anos.</p>
+            <p>{{ animal.descricao }}</p>
+          </div>
+        }
+      </div>
+    }
+
+    @if (filter() === 'adotados') {
+      <div class="animais-adotados">
+        @for (animal of animaisAdotados(); track animal.id) {
+          <div class="animal-adotado">
+            <div class="badge-adotado">✓ Adotado</div>
+            <img [src]="animal.imagemUrl" [alt]="animal.nome + ' - ' + animal.raca">
+            <h3>{{ animal.nome }}</h3>
+            <p><strong>Raça:</strong> {{ animal.raca }}. <strong>Idade:</strong> {{ animal.idade }} anos.</p>
+            <p class="info-adocao">
+              <strong>Adotado por:</strong> {{ animal.adotantePor }}<br>
+              <strong>Data:</strong> {{ animal.adotadoEm }}
+            </p>
+            <div class="avaliacao">
+              <strong>Avaliação:</strong>
+              <span class="stars">{{ getStars(animal.avaliacao).join('') }}</span>
+            </div>
+            <p class="depoimento-animal">"{{ animal.depoimento }}"</p>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>

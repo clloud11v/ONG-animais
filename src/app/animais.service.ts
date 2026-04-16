@@ -1,0 +1,294 @@
+import { Injectable, signal } from '@angular/core';
+import { Animal } from './animal.model';
+import { AnimalAdotado } from './animal-adotado.model';
+import { Feedback } from './feedback.model';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AnimaisService {
+  private animaisSignal = signal<Animal[]>([
+    {
+      id: 1,
+      nome: 'Rex',
+      raca: 'Vira-lata',
+      idade: 2,
+      descricao: 'Rex é um cachorro muito brincalhão e amoroso, perfeito para famílias com crianças.',
+      imagemUrl: 'https://i.pinimg.com/736x/b1/4c/3f/b14c3f5183057d2b0baa8b5db07762db.jpg',
+      tipo: 'cao'
+    },
+    {
+      id: 2,
+      nome: 'Mia',
+      raca: 'Siamês',
+      idade: 1,
+      descricao: 'Mia é uma gatinha carinhosa e independente, ideal para apartamentos.',
+      imagemUrl: 'https://i.pinimg.com/736x/e5/12/1e/e5121e908be96abbfd8e59d6a2b4b6c5.jpg',
+      tipo: 'gato'
+    },
+    {
+      id: 3,
+      nome: 'Bobby',
+      raca: 'Labrador',
+      idade: 3,
+      descricao: 'Bobby adora passear e brincar, é muito obediente e leal.',
+      imagemUrl: 'https://i.pinimg.com/736x/65/27/e7/6527e74f551bd8d78efb3e8ea6afb4ab.jpg',
+      tipo: 'cao'
+    },
+    {
+      id: 4,
+      nome: 'Luna',
+      raca: 'Persa',
+      idade: 2,
+      descricao: 'Luna é uma gatinha calma e afetuosa, perfeita para um lar tranquilo.',
+      imagemUrl: 'https://i.pinimg.com/736x/8f/18/b3/8f18b39fbdd3d3cd9ca7ad999a0fd237.jpg',
+      tipo: 'gato'
+    },
+    {
+      id: 5,
+      nome: 'Max',
+      raca: 'Golden Retriever',
+      idade: 1,
+      descricao: 'Max é um filhote energético e inteligente, ótimo para atividades ao ar livre.',
+      imagemUrl: 'https://i.pinimg.com/736x/69/45/ca/6945ca97974389d412e1f9f4f5c8878d.jpg',
+      tipo: 'cao'
+    },
+    {
+      id: 6,
+      nome: 'Bella',
+      raca: 'Maine Coon',
+      idade: 4,
+      descricao: 'Bella é uma gata majestosa e brincalhona, adora companhia.',
+      imagemUrl: 'https://i.pinimg.com/736x/12/06/f4/1206f4a06c3b6c0e7ee548136524daa9.jpg',
+      tipo: 'gato'
+    }
+  ]);
+
+  private animaisAdotadosSignal = signal<AnimalAdotado[]>([
+    {
+      id: 101,
+      nome: 'Toby',
+      raca: 'Poodle',
+      idade: 3,
+      descricao: 'Toby é um cachorro afetuoso e inteligente.',
+      imagemUrl: 'https://i.pinimg.com/736x/d9/d2/97/d9d2975fe405e7983ebb0942485b1edb.jpg',
+      tipo: 'cao',
+      adotadoEm: '2025-01-15',
+      adotantePor: 'Família Silva',
+      avaliacao: 5,
+      depoimento: 'Toby trouxe uma alegria imensa para nossa família. Recomendamos muito a adoção!'
+    },
+    {
+      id: 102,
+      nome: 'Tomás',
+      raca: 'Gato sem raça',
+      idade: 2,
+      descricao: 'Tomás é um gato carinhoso e brincalhão.',
+      imagemUrl: 'https://i.pinimg.com/736x/3a/a3/05/3aa305f3233d0e2dfc1b02d338eab245.jpg',
+      tipo: 'gato',
+      adotadoEm: '2025-02-20',
+      adotantePor: 'Ana Costa',
+      avaliacao: 5,
+      depoimento: 'Tomás se adaptou perfeitamente. É companheiro, carinhoso e muito obediente.'
+    },
+    {
+      id: 103,
+      nome: 'Chiquinha',
+      raca: 'Vira-lata',
+      idade: 4,
+      descricao: 'Chiquinha é uma cachorra dócil e amigável.',
+      imagemUrl: 'https://i.pinimg.com/736x/5a/a3/c8/5aa3c873a51803a0e2f6d4a2fe1fae19.jpg',
+      tipo: 'cao',
+      adotadoEm: '2024-12-10',
+      adotantePor: 'João Pereira',
+      avaliacao: 5,
+      depoimento: 'Chiquinha é a melhor decisão que tomamos. Leal, carinhosa e traz felicidade todos os dias.'
+    },
+    {
+      id: 104,
+      nome: 'Felicia',
+      raca: 'Gato Laranja',
+      idade: 1,
+      descricao: 'Felicia é uma gatinha energética e carinhosa.',
+      imagemUrl: 'https://i.pinimg.com/736x/8f/e0/77/8fe077bbfcd071385d267d17aeaf4b2d.jpg',
+      tipo: 'gato',
+      adotadoEm: '2025-01-30',
+      adotantePor: 'Mariana Lima',
+      avaliacao: 5,
+      depoimento: 'Felicia é perfeita! Muito dócil, afetuosa e se dá muito bem com outras crianças.'
+    },
+    {
+      id: 105,
+      nome: 'Duke',
+      raca: 'Pitbull',
+      idade: 2,
+      descricao: 'Duke é um cachorro protetor e amoroso.',
+      imagemUrl: 'https://i.pinimg.com/736x/5c/e6/c4/5ce6c43443d09ee268df77ee0e022e45.jpg',
+      tipo: 'cao',
+      adotadoEm: '2024-11-25',
+      adotantePor: 'Carlos Mendes',
+      avaliacao: 5,
+      depoimento: 'Duke é protetor, afetuoso e traz segurança para nossa casa. Um cão incrível!'
+    },
+    {
+      id: 106,
+      nome: 'Princesa',
+      raca: 'Persa Branca',
+      idade: 3,
+      descricao: 'Princesa é uma gata elegante e calma.',
+      imagemUrl: 'https://i.pinimg.com/736x/12/ac/f0/12acf0bca39ce4ac0de4f324c6c43a33.jpg',
+      tipo: 'gato',
+      adotadoEm: '2025-02-05',
+      adotantePor: 'Patricia Oliveira',
+      avaliacao: 4,
+      depoimento: 'Princesa acrescentou paz e serenidade ao nosso lar. Muito tranquila e independente.'
+    },
+    {
+      id: 107,
+      nome: 'Thor',
+      raca: 'Husky',
+      idade: 5,
+      descricao: 'Thor é um cachorro atlético e leal.',
+      imagemUrl: 'https://i.pinimg.com/736x/a9/b9/33/a9b933335efb2208d3c833ca9bb41c83.jpg',
+      tipo: 'cao',
+      adotadoEm: '2024-10-18',
+      adotantePor: 'Roberto Alves',
+      avaliacao: 5,
+      depoimento: 'Thor é leal, ativo e companheiro perfeito para caminhadas. Amor à primeira vista!'
+    },
+    {
+      id: 108,
+      nome: 'Mimi',
+      raca: 'Gato Preto',
+      idade: 2,
+      descricao: 'Mimi é uma gatinha dócil e brincalhona.',
+      imagemUrl: 'https://i.pinimg.com/736x/95/d3/bb/95d3bb13554b7ddaeb661206c7735de2.jpg',
+      tipo: 'gato',
+      adotadoEm: '2025-01-12',
+      adotantePor: 'Fernanda Rocha',
+      avaliacao: 5,
+      depoimento: 'Mimi conquistou nossos corações. Dócil, carinhosa e traz muita diversão.'
+    },
+    {
+      id: 109,
+      nome: 'Scooby',
+      raca: 'Cocker Spaniel',
+      idade: 3,
+      descricao: 'Scooby é um cachorro carinhoso e sociável.',
+      imagemUrl: 'https://i.pinimg.com/736x/b9/31/e0/b931e0cc4076f81ac8ffc2fe445c5358.jpg',
+      tipo: 'cao',
+      adotadoEm: '2024-12-28',
+      adotantePor: 'Lucia Martins',
+      avaliacao: 4,
+      depoimento: 'Scooby é o cão mais sociável que conhecemos. Adora brincar e é muito inteligente.'
+    },
+    {
+      id: 110,
+      nome: 'Whiskers',
+      raca: 'Gato Siamês',
+      idade: 4,
+      descricao: 'Whiskers é um gato elegante e comunicativo.',
+      imagemUrl: 'https://i.pinimg.com/736x/bd/35/76/bd3576be32422104a96f17d248ed375d.jpg',
+      tipo: 'gato',
+      adotadoEm: '2025-02-14',
+      adotantePor: 'Bruno Santos',
+      avaliacao: 5,
+      depoimento: 'Whiskers é extraordinário! Comunicativo, carinhoso e traz vida à nossa casa.'
+    }
+  ]);
+
+  private feedbacksSignal = signal<Feedback[]>([
+    {
+      id: 1,
+      nome: 'Família Silva',
+      nomePet: 'Toby',
+      avaliacao: 5,
+      depoimento: 'Toby trouxe uma alegria imensa para nossa família. Recomendamos muito a adoção!',
+      data: '2025-01-20'
+    },
+    {
+      id: 2,
+      nome: 'Ana Costa',
+      nomePet: 'Tomás',
+      avaliacao: 5,
+      depoimento: 'Tomás se adaptou perfeitamente. É companheiro, carinhoso e muito obediente.',
+      data: '2025-02-22'
+    },
+    {
+      id: 3,
+      nome: 'João Pereira',
+      nomePet: 'Chiquinha',
+      avaliacao: 5,
+      depoimento: 'Chiquinha é a melhor decisão que tomamos. Leal, carinhosa e traz felicidade todos os dias.',
+      data: '2024-12-15'
+    },
+    {
+      id: 4,
+      nome: 'Mariana Lima',
+      nomePet: 'Felicia',
+      avaliacao: 5,
+      depoimento: 'Felicia é perfeita! Muito dócil, afetuosa e se dá muito bem com as crianças.',
+      data: '2025-02-05'
+    },
+    {
+      id: 5,
+      nome: 'Carlos Mendes',
+      nomePet: 'Duke',
+      avaliacao: 5,
+      depoimento: 'Duke é protetor, afetuoso e traz segurança para nossa casa. Um cão incrível!',
+      data: '2024-12-10'
+    },
+    {
+      id: 6,
+      nome: 'Patricia Oliveira',
+      nomePet: 'Princesa',
+      avaliacao: 4,
+      depoimento: 'Princesa acrescentou paz e serenidade ao nosso lar. Muito tranquila e independente.',
+      data: '2025-02-08'
+    },
+    {
+      id: 7,
+      nome: 'Roberto Alves',
+      nomePet: 'Thor',
+      avaliacao: 5,
+      depoimento: 'Thor é leal, ativo e companheiro perfeito para caminhadas. Amor à primeira vista!',
+      data: '2024-10-25'
+    },
+    {
+      id: 8,
+      nome: 'Fernanda Rocha',
+      nomePet: 'Mimi',
+      avaliacao: 5,
+      depoimento: 'Mimi conquistou nossos corações. Dócil, carinhosa e traz muita diversão.',
+      data: '2025-01-18'
+    },
+    {
+      id: 9,
+      nome: 'Lucia Martins',
+      nomePet: 'Scooby',
+      avaliacao: 4,
+      depoimento: 'Scooby é o cão mais sociável que conhecemos. Adora brincar e é muito inteligente.',
+      data: '2025-01-05'
+    },
+    {
+      id: 10,
+      nome: 'Bruno Santos',
+      nomePet: 'Whiskers',
+      avaliacao: 5,
+      depoimento: 'Whiskers é extraordinário! Comunicativo, carinhoso e traz vida à nossa casa.',
+      data: '2025-02-18'
+    }
+  ]);
+
+  animais = this.animaisSignal.asReadonly();
+  animaisAdotados = this.animaisAdotadosSignal.asReadonly();
+  feedbacks = this.feedbacksSignal.asReadonly();
+
+  getAnimalById(id: number): Animal | undefined {
+    return this.animaisSignal().find(animal => animal.id === id);
+  }
+
+  addAnimal(animal: Animal) {
+    this.animaisSignal.update(animais => [...animais, animal]);
+  }
+}
